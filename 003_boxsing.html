@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            /* box-sizing: border-box; */
+            overflow: hidden;
+        }
+
+        .box {
+            /* content box */
+            width: 300px;
+            height: 300px;
+            background-color: lightblue;
+
+            /* padding 另外加上去 */
+            padding-top: 30px;
+            padding-left: 30px;
+            padding-right: 80px;
+            padding-bottom: 50px;
+        }
+
+        .box-border {
+            box-sizing: border-box;
+            /* content box */
+            width: 300px;
+            height: 300px;
+            background-color: lightpink;
+
+            /* padding 另外加上去 */
+            padding-top: 30px;
+            padding-left: 30px;
+            padding-right: 80px;
+            padding-bottom: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- lorem50 tab -->
+    <h2>
+        content-box
+    </h2>
+    <div class="box">
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eos alias unde aut fugit beatae molestiae illum sequi,
+        dolores assumenda adipisci reiciendis tempora repellendus consequuntur quis explicabo aliquid delectus,
+        necessitatibus fugiat vero sunt quaerat amet! Veritatis harum vel debitis libero dignissimos rerum voluptatibus.
+        Cumque reprehenderit inventore atque cupiditate laudantium dolorum id tempore doloremque quis provident sequi,
+        odio saepe illum velit odit nesciunt harum perferendis laboriosam. Similique deserunt deleniti amet, suscipit
+        dicta iure dolorem illum incidunt magnam beatae commodi eligendi veritatis voluptatem.
+    </div>
+    <br>
+    <hr><br>
+
+    <h2>
+        border-box
+    </h2>
+    <div class="box-border">
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eos alias unde aut fugit beatae molestiae illum
+        sequi,
+        dolores assumenda adipisci reiciendis tempora repellendus consequuntur quis explicabo aliquid delectus,
+        necessitatibus fugiat vero sunt quaerat amet! Veritatis harum vel debitis libero dignissimos rerum
+        voluptatibus.
+        Cumque reprehenderit inventore atque cupiditate laudantium dolorum id tempore doloremque quis provident
+        sequi,
+        odio saepe illum velit odit nesciunt harum perferendis laboriosam. Similique deserunt deleniti amet,
+        suscipit
+        dicta iure dolorem illum incidunt magnam beatae commodi eligendi veritatis voluptatem.
+    </div>
+</body>
+
+</html>
