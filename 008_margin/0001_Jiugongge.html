@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+.grid-container {
+  display: grid; /* 啟用 Grid 佈局 */
+  width: 450px; /* 假設總寬度 */
+  height: 450px; /* 假設總高度 */
+  border: 1px solid black;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+}
+.grid-item {
+  border: 1px solid #ccc; /* 方便看見格子邊界 */
+  display: flex; /* 為了讓裡面的內容居中 (延續您對居中的偏好) */
+  justify-content: center;
+  align-items: center;
+}
+
+
+    </style>
+</head>
+
+<body>
+    <div class="grid-container">
+        <div class="grid-item">1</div>
+        <div class="grid-item">2</div>
+        <div class="grid-item">9</div>
+    </div>
+</body>
+
+</html>

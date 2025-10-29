@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Width & Height 單位示意圖</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+        }
+        
+        .viewport-info {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        
+        .viewport-info span {
+            color: #FFD700;
+            font-size: 24px;
+        }
+        
+        /* 分頁標籤 */
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #e0e0e0;
+        }
+        
+        .tab {
+            padding: 15px 30px;
+            background-color: #f5f5f5;
+            border: none;
+            border-radius: 10px 10px 0 0;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        
+        .tab:hover {
+            background-color: #e0e0e0;
+        }
+        
+        .tab.active {
+            background-color: #667eea;
+            color: white;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        /* 控制面板 */
+        .controls {
+            background-color: #f9f9f9;
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+        
+        .control-row {
+            display: grid;
+            grid-template-columns: 150px 1fr 100px;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .control-row label {
+            font-weight: bold;
+            color: #333;
+        }
+        
+        input[type="range"] {
+            width: 100%;
+        }
+        
+        .value-display {
+            text-align: center;
+            font-weight: bold;
+            color: #667eea;
+            font-size: 16px;
+        }
+        
+        /* 示意圖區域 */
+        .demo-area {
+            background-color: #f0f0f0;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            min-height: 400px;
+            position: relative;
+            overflow: auto;
+        }
+        
+        .viewport-reference {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: rgba(255,255,255,0.95);
+            padding: 10px 15px;
+            border-radius: 8px;
+            font-size: 12px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .demo-box {
+            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+            border: 4px solid #2E7D32;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            text-align: center;
+            padding: 20px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            position: relative;
+        }
+        
+        .size-label {
+            position: absolute;
+            background-color: rgba(0,0,0,0.8);
+            color: #FFD700;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        
+        .size-label.top {
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .size-label.left {
+            left: -80px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        
+        /* 程式碼顯示 */
+        .code-display {
+            background-color: #263238;
+            color: #aed581;
+            padding: 20px;
+            border-radius: 10px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+        
+        .highlight {
+            color: #FFD700;
+            font-weight: bold;
+        }
+        
+        /* 比較表格 */
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .comparison-card {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 5px solid #667eea;
+        }
+        
+        .comparison-card h3 {
+            margin-top: 0;
+            color: #667eea;
+        }
+        
+        .comparison-card ul {
+            padding-left: 20px;
+            line-height: 1.8;
+        }
+        
+        .info-box {
+            background-color: #E3F2FD;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 5px solid #2196F3;
+            margin: 20px 0;
+        }
+        
+        .info-box strong {
+            color: #1976D2;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📏 Width & Height 單位完全解析</h1>
+        <p class="subtitle">互動式學習各種單位的差異</p>
+        
+        <div class="viewport-info" id="viewportInfo">
+            目前視窗大小: <span id="viewportSize">載入中...</span>
+        </div>
+        
+        <div class="tabs">
+            <button class="tab active" onclick="switchTab('px')">固定單位 (px)</button>
+            <button class="tab" onclick="switchTab('percent')">百分比 (%)</button>
+            <button class="tab" onclick="switchTab('vh-vw')">視窗單位 (vh/vw)</button>
+            <button class="tab" onclick="switchTab('comparison')">單位比較</button>
+        </div>
+        
+        <!-- Tab 1: px 固定單位 -->
+        <div id="tab-px" class="tab-content active">
+            <h2>📐 固定單位 (px)</h2>
+            <p><strong>特性:</strong> 不會隨著視窗大小改變,永遠是固定的像素值</p>
+            
+            <div class="controls">
+                <div class="control-row">
+                    <label>Width (寬度):</label>
+                    <input type="range" id="pxWidth" min="50" max="600" value="300">
+                    <span class="value-display" id="pxWidthValue">300px</span>
+                </div>
+                <div class="control-row">
+                    <label>Height (高度):</label>
+                    <input type="range" id="pxHeight" min="50" max="400" value="200">
+                    <span class="value-display" id="pxHeightValue">200px</span>
+                </div>
+            </div>
+            
+            <div class="demo-area">
+                <div class="viewport-reference">
+                    💡 試著調整瀏覽器大小<br>元素不會改變!
+                </div>
+                <div class="demo-box" id="pxBox">
+                    <div class="size-label top" id="pxWidthLabel">寬: 300px</div>
+                    <div class="size-label left" id="pxHeightLabel">高: 200px</div>
+                    固定單位 (px)<br>
+                    <small>我的大小不會變!</small>
+                </div>
+            </div>
+            
+            <div class="code-display" id="pxCode"></div>
+            
+            <div class="info-box">
+                <strong>💡 使用時機:</strong><br>
+                • 需要精確控制大小時<br>
+                • 按鈕、圖示等固定尺寸元素<br>
+                • 不需要響應式的元素
+            </div>
+        </div>
+        
+        <!-- Tab 2: 百分比 -->
+        <div id="tab-percent" class="tab-content">
+            <h2>📊 百分比單位 (%)</h2>
+            <p><strong>特性:</strong> 相對於<strong>父元素</strong>的大小,會隨父元素改變</p>
+            
+            <div class="controls">
+                <div class="control-row">
+                    <label>Width (寬度):</label>
+                    <input type="range" id="percentWidth" min="10" max="100" value="60">
+                    <span class="value-display" id="percentWidthValue">60%</span>
+                </div>
+                <div class="control-row">
+                    <label>Height (高度):</label>
+                    <input type="range" id="percentHeight" min="10" max="100" value="50">
+                    <span class="value-display" id="percentHeightValue">50%</span>
+                </div>
+            </div>
+            
+            <div class="demo-area" style="background: linear-gradient(45deg, #e0e0e0 25%, transparent 25%, transparent 75%, #e0e0e0 75%), linear-gradient(45deg, #e0e0e0 25%, transparent 25%, transparent 75%, #e0e0e0 75%); background-size: 20px 20px; background-position: 0 0, 10px 10px;">
+                <div class="viewport-reference">
+                    💡 相對於灰色區域的大小<br>
+                    (父元素)
+                </div>
+                <div class="demo-box" id="percentBox">
+                    <div class="size-label top" id="percentWidthLabel">寬: 60%</div>
+                    <div class="size-label left" id="percentHeightLabel">高: 50%</div>
+                    百分比單位 (%)<br>
+                    <small>相對於父元素!</small>
+                </div>
+            </div>
+            
+            <div class="code-display" id="percentCode"></div>
+            
+            <div class="info-box">
+                <strong>💡 使用時機:</strong><br>
+                • 需要相對於父元素的大小<br>
+                • 響應式布局<br>
+                • 保持比例關係
+            </div>
+        </div>
+        
+        <!-- Tab 3: vh/vw -->
+        <div id="tab-vh-vw" class="tab-content">
+            <h2>🖥️ 視窗單位 (vh / vw)</h2>
+            <p><strong>特性:</strong> 相對於<strong>瀏覽器視窗</strong>的大小,會隨視窗改變</p>
+            
+            <div class="controls">
+                <div class="control-row">
+                    <label>Width (vw):</label>
+                    <input type="range" id="vwWidth" min="10" max="100" value="50">
+                    <span class="value-display" id="vwWidthValue">50vw</span>
+                </div>
+                <div class="control-row">
+                    <label>Height (vh):</label>
+                    <input type="range" id="vhHeight" min="10" max="100" value="40">
+                    <span class="value-display" id="vhHeightValue">40vh</span>
+                </div>
+            </div>
+            
+            <div class="demo-area">
+                <div class="viewport-reference">
+                    💡 試著調整瀏覽器大小<br>
+                    元素會跟著變!
+                </div>
+                <div class="demo-box" id="vhvwBox">
+                    <div class="size-label top" id="vwWidthLabel">寬: 50vw</div>
+                    <div class="size-label left" id="vhHeightLabel">高: 40vh</div>
+                    視窗單位 (vh/vw)<br>
+                    <small>我會跟著視窗變!</small><br>
+                    <small id="actualSize"></small>
+                </div>
+            </div>
+            
+            <div class="code-display" id="vhvwCode"></div>
+            
+            <div class="info-box">
+                <strong>💡 使用時機:</strong><br>
+                • 全螢幕元素 (100vh/100vw)<br>
+                • Hero 區塊、Landing Page<br>
+                • 需要相對於視窗大小的元素
+            </div>
+        </div>
+        
+        <!-- Tab 4: 比較 -->
+        <div id="tab-comparison" class="tab-content">
+            <h2>⚖️ 單位完整比較</h2>
+            
+            <div class="comparison-grid">
+                <div class="comparison-card">
+                    <h3>📐 px (像素)</h3>
+                    <ul>
+                        <li><strong>類型:</strong> 固定單位</li>
+                        <li><strong>相對於:</strong> 無(絕對值)</li>
+                        <li><strong>會變化:</strong> ❌ 不會</li>
+                        <li><strong>範例:</strong> width: 300px</li>
+                    </ul>
+                </div>
+                
+                <div class="comparison-card">
+                    <h3>📊 % (百分比)</h3>
+                    <ul>
+                        <li><strong>類型:</strong> 相對單位</li>
+                        <li><strong>相對於:</strong> 父元素</li>
+                        <li><strong>會變化:</strong> ✅ 會</li>
+                        <li><strong>範例:</strong> width: 50%</li>
+                    </ul>
+                </div>
+                
+                <div class="comparison-card">
+                    <h3>🖥️ vw (Viewport Width)</h3>
+                    <ul>
+                        <li><strong>類型:</strong> 相對單位</li>
+                        <li><strong>相對於:</strong> 視窗寬度</li>
+                        <li><strong>會變化:</strong> ✅ 會</li>
+                        <li><strong>範例:</strong> width: 50vw</li>
+                    </ul>
+                </div>
+                
+                <div class="comparison-card">
+                    <h3>🖥️ vh (Viewport Height)</h3>
+                    <ul>
+                        <li><strong>類型:</strong> 相對單位</li>
+                        <li><strong>相對於:</strong> 視窗高度</li>
+                        <li><strong>會變化:</strong> ✅ 會</li>
+                        <li><strong>範例:</strong> height: 50vh</li>
+                    </ul>
+                </div>
+                
+                <div class="comparison-card">
+                    <h3>📱 vmin</h3>
+                    <ul>
+                        <li><strong>類型:</strong> 相對單位</li>
+                        <li><strong>相對於:</strong> vh 和 vw 中較小的</li>
+                        <li><strong>會變化:</strong> ✅ 會</li>
+                        <li><strong>範例:</strong> font-size: 5vmin</li>
+                    </ul>
+                </div>
+                
+                <div class="comparison-card">
+                    <h3>📱 vmax</h3>
+                    <ul>
+                        <li><strong>類型:</strong> 相對單位</li>
+                        <li><strong>相對於:</strong> vh 和 vw 中較大的</li>
+                        <li><strong>會變化:</strong> ✅ 會</li>
+                        <li><strong>範例:</strong> width: 50vmax</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="info-box" style="margin-top: 30px;">
+                <h3 style="margin-top: 0;">🎯 選擇建議</h3>
+                <table style="width: 100%; border-collapse: collapse;">
+                    <tr style="background-color: #f5f5f5;">
+                        <th style="padding: 12px; text-align: left; border: 1px solid #ddd;">需求</th>
+                        <th style="padding: 12px; text-align: left; border: 1px solid #ddd;">推薦單位</th>
+                    </tr>
+                    <tr>
+                        <td style="padding: 12px; border: 1px solid #ddd;">固定大小的按鈕、圖示</td>
+                        <td style="padding: 12px; border: 1px solid #ddd;"><strong>px</strong></td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 12px; border: 1px solid #ddd;">相對於父元素的大小</td>
+                        <td style="padding: 12px; border: 1px solid #ddd;"><strong>%</strong></td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 12px; border: 1px solid #ddd;">全螢幕 Hero 區塊</td>
+                        <td style="padding: 12px; border: 1px solid #ddd;"><strong>100vh / 100vw</strong></td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 12px; border: 1px solid #ddd;">響應式布局</td>
+                        <td style="padding: 12px; border: 1px solid #ddd;"><strong>% 或 vw/vh</strong></td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 12px; border: 1px solid #ddd;">保持正方形(無論螢幕)</td>
+                        <td style="padding: 12px; border: 1px solid #ddd;"><strong>vmin</strong></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentTab = 'px';
+        
+        function switchTab(tabName) {
+            currentTab = tabName;
+            document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+            
+            event.target.classList.add('active');
+            document.getElementById('tab-' + tabName).classList.add('active');
+        }
+        
+        // 更新視窗資訊
+        function updateViewportInfo() {
+            const width = window.innerWidth;
+            const height = window.innerHeight;
+            document.getElementById('viewportSize').textContent = `${width}px × ${height}px`;
+            
+            if (currentTab === 'vh-vw') {
+                updateVhVw();
+            }
+        }
+        
+        // px 單位
+        const pxWidth = document.getElementById('pxWidth');
+        const pxHeight = document.getElementById('pxHeight');
+        const pxBox = document.getElementById('pxBox');
+        
+        function updatePx() {
+            const w = pxWidth.value;
+            const h = pxHeight.value;
+            
+            document.getElementById('pxWidthValue').textContent = w + 'px';
+            document.getElementById('pxHeightValue').textContent = h + 'px';
+            document.getElementById('pxWidthLabel').textContent = `寬: ${w}px`;
+            document.getElementById('pxHeightLabel').textContent = `高: ${h}px`;
+            
+            pxBox.style.width = w + 'px';
+            pxBox.style.height = h + 'px';
+            
+            document.getElementById('pxCode').innerHTML = `.box {<br>
+&nbsp;&nbsp;<span class="highlight">width: ${w}px;</span><br>
+&nbsp;&nbsp;<span class="highlight">height: ${h}px;</span><br>
+}`;
+        }
+        
+        pxWidth.addEventListener('input', updatePx);
+        pxHeight.addEventListener('input', updatePx);
+        updatePx();
+        
+        // 百分比
+        const percentWidth = document.getElementById('percentWidth');
+        const percentHeight = document.getElementById('percentHeight');
+        const percentBox = document.getElementById('percentBox');
+        
+        function updatePercent() {
+            const w = percentWidth.value;
+            const h = percentHeight.value;
+            
+            document.getElementById('percentWidthValue').textContent = w + '%';
+            document.getElementById('percentHeightValue').textContent = h + '%';
+            document.getElementById('percentWidthLabel').textContent = `寬: ${w}%`;
+            document.getElementById('percentHeightLabel').textContent = `高: ${h}%`;
+            
+            percentBox.style.width = w + '%';
+            percentBox.style.height = h + '%';
+            
+            document.getElementById('percentCode').innerHTML = `.box {<br>
+&nbsp;&nbsp;<span class="highlight">width: ${w}%;</span><br>
+&nbsp;&nbsp;<span class="highlight">height: ${h}%;</span><br>
+}<br><br>
+/* 相對於父元素的大小 */`;
+        }
+        
+        percentWidth.addEventListener('input', updatePercent);
+        percentHeight.addEventListener('input', updatePercent);
+        updatePercent();
+        
+        // vh/vw
+        const vwWidth = document.getElementById('vwWidth');
+        const vhHeight = document.getElementById('vhHeight');
+        const vhvwBox = document.getElementById('vhvwBox');
+        
+        function updateVhVw() {
+            const w = vwWidth.value;
+            const h = vhHeight.value;
+            
+            document.getElementById('vwWidthValue').textContent = w + 'vw';
+            document.getElementById('vhHeightValue').textContent = h + 'vh';
+            document.getElementById('vwWidthLabel').textContent = `寬: ${w}vw`;
+            document.getElementById('vhHeightLabel').textContent = `高: ${h}vh`;
+            
+            vhvwBox.style.width = w + 'vw';
+            vhvwBox.style.height = h + 'vh';
+            
+            const actualW = Math.round(window.innerWidth * w / 100);
+            const actualH = Math.round(window.innerHeight * h / 100);
+            document.getElementById('actualSize').textContent = `實際: ${actualW}px × ${actualH}px`;
+            
+            document.getElementById('vhvwCode').innerHTML = `.box {<br>
+&nbsp;&nbsp;<span class="highlight">width: ${w}vw;</span><br>
+&nbsp;&nbsp;<span class="highlight">height: ${h}vh;</span><br>
+}<br><br>
+/* 當前視窗: ${window.innerWidth}px × ${window.innerHeight}px */<br>
+/* 實際大小: ${actualW}px × ${actualH}px */`;
+        }
+        
+        vwWidth.addEventListener('input', updateVhVw);
+        vhHeight.addEventListener('input', updateVhVw);
+        updateVhVw();
+        
+        // 視窗大小改變時更新
+        window.addEventListener('resize', function() {
+            updateViewportInfo();
+        });
+        
+        updateViewportInfo();
+    </script>
+</body>
+</html>

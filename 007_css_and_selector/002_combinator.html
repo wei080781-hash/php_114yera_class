@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 兄弟姊妹 少用 
+        a1 ~ div 選擇的是具有結構關係的元素*/
+        .a1~div {
+            color: lightgreen;
+        }
+
+        /* 子孫 常用 (影響選擇的父元素中的子元素)*/
+        .a1>p {
+            color: lightpink;
+        }
+
+
+        /* 子孫 常用 */
+        .a2>p {
+            color: lightseagreen;
+        }
+
+
+        /* 子孫 常用 */
+        .a3>p {
+            color: lightgray;
+        }
+
+        /* .a2~div {
+            color: lightblue;
+        } */
+
+        /* .a3~div {
+            color: lightblue;
+        } */
+    </style>
+</head>
+
+<body>
+    <div class="a1">
+        劉備
+        <P>
+            &nbsp;&nbsp;&nbsp;&nbsp;劉封
+        </P>
+        <P>
+            &nbsp;&nbsp;&nbsp;&nbsp;劉禪
+        </P>
+    </div>
+
+    <div class="a2">
+        關羽
+        <P>
+            &nbsp;&nbsp;&nbsp;&nbsp;關平
+        </P>
+        <P>
+            &nbsp;&nbsp;&nbsp;&nbsp;關興
+        </P>
+    </div>
+
+    <div class="a3">
+        張飛
+        <P>
+            &nbsp;&nbsp;&nbsp;&nbsp;張苞
+        </P>
+        <P>
+            &nbsp;&nbsp;&nbsp;&nbsp;張二
+        </P>
+    </div>
+</body>
+
+</html>
