@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display 屬性圖解</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .demo-section {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        
+        .section-title {
+            font-size: 1.8em;
+            color: #667eea;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .badge {
+            background: #667eea;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.6em;
+            font-weight: bold;
+        }
+        
+        .description {
+            background: #f7f7f7;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .description h3 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+        
+        .description ul {
+            margin-left: 20px;
+            color: #555;
+        }
+        
+        .description li {
+            margin: 5px 0;
+        }
+        
+        .demo-box {
+            background: #f0f0f0;
+            padding: 20px;
+            border-radius: 10px;
+            border: 2px dashed #999;
+            margin-top: 15px;
+        }
+        
+        /* Inline 元素樣式 */
+        .inline-element {
+            background: #ff6b6b;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            margin: 5px;
+        }
+        
+        /* Inline-block 元素樣式 */
+        .inline-block-element {
+            display: inline-block;
+            background: #4ecdc4;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 5px;
+            margin: 5px;
+            width: 120px;
+            text-align: center;
+        }
+        
+        /* Block 元素樣式 */
+        .block-element {
+            display: block;
+            background: #95e1d3;
+            color: #333;
+            padding: 15px 20px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+        
+        .highlight {
+            background: #ffe66d;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-weight: bold;
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background: white;
+        }
+        
+        .comparison-table th,
+        .comparison-table td {
+            border: 2px solid #ddd;
+            padding: 12px;
+            text-align: center;
+        }
+        
+        .comparison-table th {
+            background: #667eea;
+            color: white;
+            font-weight: bold;
+        }
+        
+        .comparison-table tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+        
+        .yes {
+            color: #27ae60;
+            font-weight: bold;
+        }
+        
+        .no {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📦 CSS Display 屬性圖解</h1>
+        
+        <!-- Inline 示範 -->
+        <div class="demo-section">
+            <div class="section-title">
+                <span class="badge">inline</span>
+                <span>像文字一樣排列</span>
+            </div>
+            <div class="description">
+                <h3>🔹 特性：</h3>
+                <ul>
+                    <li>元素會<span class="highlight">並排在同一行</span>，像文字一樣</li>
+                    <li><span class="highlight">無法設定寬高</span>（width/height 無效）</li>
+                    <li>只佔據內容所需的空間</li>
+                    <li>常見元素：&lt;span&gt;, &lt;a&gt;, &lt;strong&gt;, &lt;em&gt;</li>
+                </ul>
+            </div>
+            <div class="demo-box">
+                這是一段文字
+                <span class="inline-element">inline 1</span>
+                中間還有文字
+                <span class="inline-element">inline 2</span>
+                <span class="inline-element">inline 3</span>
+                繼續排列在同一行
+            </div>
+        </div>
+        
+        <!-- Inline-block 示範 -->
+        <div class="demo-section">
+            <div class="section-title">
+                <span class="badge" style="background: #4ecdc4;">inline-block</span>
+                <span>兼具兩者優點</span>
+            </div>
+            <div class="description">
+                <h3>🔹 特性：</h3>
+                <ul>
+                    <li>元素會<span class="highlight">並排在同一行</span></li>
+                    <li><span class="highlight">可以設定寬高</span>（width/height 有效）</li>
+                    <li>可以設定內外邊距（padding/margin）</li>
+                    <li>常用於：按鈕、導航選單、卡片排列</li>
+                </ul>
+            </div>
+            <div class="demo-box">
+                <div class="inline-block-element">Box 1<br>120px</div>
+                <div class="inline-block-element">Box 2<br>120px</div>
+                <div class="inline-block-element">Box 3<br>120px</div>
+            </div>
+        </div>
+        
+        <!-- Block 示範 -->
+        <div class="demo-section">
+            <div class="section-title">
+                <span class="badge" style="background: #95e1d3; color: #333;">block</span>
+                <span>獨佔一整行</span>
+            </div>
+            <div class="description">
+                <h3>🔹 特性：</h3>
+                <ul>
+                    <li>元素會<span class="highlight">獨佔一整行</span></li>
+                    <li><span class="highlight">可以設定寬高</span>（width/height 有效）</li>
+                    <li>預設寬度為 100%（佔滿父容器）</li>
+                    <li>常見元素：&lt;div&gt;, &lt;p&gt;, &lt;h1&gt;~&lt;h6&gt;, &lt;section&gt;</li>
+                </ul>
+            </div>
+            <div class="demo-box">
+                <div class="block-element">Block 元素 1 - 獨佔整行</div>
+                <div class="block-element">Block 元素 2 - 下一個必須換行</div>
+                <div class="block-element">Block 元素 3 - 即使內容很短也獨佔一行</div>
+            </div>
+        </div>
+        
+        <!-- 比較表格 -->
+        <div class="demo-section">
+            <div class="section-title">
+                📊 屬性比較表
+            </div>
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>特性</th>
+                        <th>inline</th>
+                        <th>inline-block</th>
+                        <th>block</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>並排在同一行</strong></td>
+                        <td class="yes">✓ 是</td>
+                        <td class="yes">✓ 是</td>
+                        <td class="no">✗ 否</td>
+                    </tr>
+                    <tr>
+                        <td><strong>可設定 width/height</strong></td>
+                        <td class="no">✗ 否</td>
+                        <td class="yes">✓ 是</td>
+                        <td class="yes">✓ 是</td>
+                    </tr>
+                    <tr>
+                        <td><strong>可設定上下 margin</strong></td>
+                        <td class="no">✗ 否</td>
+                        <td class="yes">✓ 是</td>
+                        <td class="yes">✓ 是</td>
+                    </tr>
+                    <tr>
+                        <td><strong>預設寬度</strong></td>
+                        <td>內容寬度</td>
+                        <td>內容寬度</td>
+                        <td>100%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>常見用途</strong></td>
+                        <td>文字、連結</td>
+                        <td>按鈕、卡片</td>
+                        <td>區塊、容器</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
