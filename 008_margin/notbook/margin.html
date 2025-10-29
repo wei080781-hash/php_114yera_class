@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Margin & Padding 獨立示意圖</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f5f5f5;
+            margin: 0;
+        }
+
+        .main-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .split-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .demo-card {
+            background-color: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-header {
+            text-align: center;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .margin-header {
+            background-color: #FFF3E0;
+            border: 3px solid #FF9800;
+        }
+
+        .padding-header {
+            background-color: #E8F5E9;
+            border: 3px solid #4CAF50;
+        }
+
+        .card-header h2 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        .card-header p {
+            margin: 5px 0 0 0;
+            color: #666;
+            font-size: 14px;
+        }
+
+        /* 控制面板 */
+        .controls {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .controls h3 {
+            margin-top: 0;
+            font-size: 16px;
+            color: #333;
+        }
+
+        .slider-group {
+            margin: 12px 0;
+        }
+
+        .slider-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+            font-size: 13px;
+            color: #555;
+        }
+
+        .slider-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        input[type="range"] {
+            flex: 1;
+            height: 6px;
+        }
+
+        .value-display {
+            min-width: 45px;
+            font-weight: bold;
+            color: #2196F3;
+            text-align: right;
+            font-size: 14px;
+        }
+
+        /* Margin 示意圖 */
+        .margin-demo-wrapper {
+            position: relative;
+            padding: 40px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 8px;
+            margin-bottom: 20px;
+            min-height: 300px;
+        }
+
+        .demo-label {
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(255, 255, 255, 0.95);
+            color: #667eea;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 13px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .margin-element-container {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .margin-element {
+            background-color: #4CAF50;
+            border: 4px solid #2E7D32;
+            border-radius: 8px;
+            padding: 30px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .margin-content {
+            background-color: #2196F3;
+            color: white;
+            text-align: center;
+            font-weight: bold;
+            padding: 25px;
+            border-radius: 4px;
+        }
+
+        .margin-indicator {
+            position: absolute;
+            background-color: rgba(255, 152, 0, 0.6);
+            border: 2px dashed #FF9800;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: white;
+            font-size: 11px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Padding 示意圖 */
+        .padding-demo-wrapper {
+            position: relative;
+            padding: 40px;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            border-radius: 8px;
+            margin-bottom: 20px;
+            min-height: 300px;
+        }
+
+        .padding-element {
+            background-color: #4CAF50;
+            border: 4px solid #2E7D32;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            position: relative;
+            min-height: 150px;
+        }
+
+        .padding-content {
+            background-color: #2196F3;
+            color: white;
+            text-align: center;
+            font-weight: bold;
+            padding: 25px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .padding-indicator {
+            position: absolute;
+            background-color: rgba(76, 175, 80, 0.4);
+            border: 2px dashed #4CAF50;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: white;
+            font-size: 11px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        /* 程式碼顯示 */
+        .code-display {
+            background-color: #263238;
+            color: #aed581;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            line-height: 1.6;
+            overflow-x: auto;
+        }
+
+        .highlight-margin {
+            color: #FF9800;
+            font-weight: bold;
+        }
+
+        .highlight-padding {
+            color: #4CAF50;
+            font-weight: bold;
+        }
+
+        .info-box {
+            background-color: #E3F2FD;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #2196F3;
+            margin-top: 15px;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .info-box strong {
+            color: #1976D2;
+        }
+
+        @media (max-width: 1024px) {
+            .split-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main-container">
+        <h1>🎯 Margin & Padding 獨立示意圖</h1>
+
+        <div class="split-container">
+            <!-- ========== Margin 區域 ========== -->
+            <div class="demo-card">
+                <div class="card-header margin-header">
+                    <h2>🔶 Margin (外邊距)</h2>
+                    <p>控制元素與外部的距離</p>
+                </div>
+
+                <div class="controls">
+                    <h3>調整 Margin</h3>
+                    <div class="slider-group">
+                        <label>上 (Top):</label>
+                        <div class="slider-container">
+                            <input type="range" id="marginTop" min="0" max="80" value="20">
+                            <span class="value-display" id="marginTopValue">20px</span>
+                        </div>
+                    </div>
+                    <div class="slider-group">
+                        <label>右 (Right):</label>
+                        <div class="slider-container">
+                            <input type="range" id="marginRight" min="0" max="80" value="20">
+                            <span class="value-display" id="marginRightValue">20px</span>
+                        </div>
+                    </div>
+                    <div class="slider-group">
+                        <label>下 (Bottom):</label>
+                        <div class="slider-container">
+                            <input type="range" id="marginBottom" min="0" max="80" value="20">
+                            <span class="value-display" id="marginBottomValue">20px</span>
+                        </div>
+                    </div>
+                    <div class="slider-group">
+                        <label>左 (Left):</label>
+                        <div class="slider-container">
+                            <input type="range" id="marginLeft" min="0" max="80" value="20">
+                            <span class="value-display" id="marginLeftValue">20px</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="margin-demo-wrapper">
+                    <div class="demo-label">父容器邊界</div>
+
+                    <div style="position: relative;">
+                        <div class="margin-indicator" id="marginTopBox"></div>
+                        <div class="margin-indicator" id="marginRightBox"></div>
+                        <div class="margin-indicator" id="marginBottomBox"></div>
+                        <div class="margin-indicator" id="marginLeftBox"></div>
+
+                        <div class="margin-element-container" id="marginContainer">
+                            <div class="margin-element">
+                                <div class="margin-content">
+                                    📦 元素內容<br>
+                                    <small>綠色 = 元素本體<br>橘色 = Margin</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="code-display" id="marginCode"></div>
+
+                <div class="info-box">
+                    <strong>💡 Margin 特性：</strong><br>
+                    • 在元素<strong>外部</strong><br>
+                    • 是<strong>透明</strong>的 (顯示父容器背景)<br>
+                    • 控制與其他元素的<strong>距離</strong><br>
+                    • 調整 Margin 會讓元素<strong>移動位置</strong>
+                </div>
+            </div>
+
+            <!-- ========== Padding 區域 ========== -->
+            <div class="demo-card">
+                <div class="card-header padding-header">
+                    <h2>🟢 Padding (內邊距)</h2>
+                    <p>控制元素內部的空間</p>
+                </div>
+
+                <div class="controls">
+                    <h3>調整 Padding</h3>
+                    <div class="slider-group">
+                        <label>上 (Top):</label>
+                        <div class="slider-container">
+                            <input type="range" id="paddingTop" min="0" max="80" value="20">
+                            <span class="value-display" id="paddingTopValue">20px</span>
+                        </div>
+                    </div>
+                    <div class="slider-group">
+                        <label>右 (Right):</label>
+                        <div class="slider-container">
+                            <input type="range" id="paddingRight" min="0" max="80" value="20">
+                            <span class="value-display" id="paddingRightValue">20px</span>
+                        </div>
+                    </div>
+                    <div class="slider-group">
+                        <label>下 (Bottom):</label>
+                        <div class="slider-container">
+                            <input type="range" id="paddingBottom" min="0" max="80" value="20">
+                            <span class="value-display" id="paddingBottomValue">20px</span>
+                        </div>
+                    </div>
+                    <div class="slider-group">
+                        <label>左 (Left):</label>
+                        <div class="slider-container">
+                            <input type="range" id="paddingLeft" min="0" max="80" value="20">
+                            <span class="value-display" id="paddingLeftValue">20px</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="padding-demo-wrapper">
+                    <div class="demo-label">父容器邊界</div>
+
+                    <div class="padding-element" id="paddingElement">
+                        <div class="padding-indicator" id="paddingTopBox"></div>
+                        <div class="padding-indicator" id="paddingRightBox"></div>
+                        <div class="padding-indicator" id="paddingBottomBox"></div>
+                        <div class="padding-indicator" id="paddingLeftBox"></div>
+
+                        <div class="padding-content" id="paddingContent">
+                            📦 內容區域<br>
+                            <small>綠色 = 元素本體<br>綠色虛線 = Padding</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="code-display" id="paddingCode"></div>
+
+                <div class="info-box">
+                    <strong>💡 Padding 特性：</strong><br>
+                    • 在元素<strong>內部</strong><br>
+                    • 顯示元素的<strong>背景色</strong> (綠色)<br>
+                    • 控制內容與邊框的<strong>距離</strong><br>
+                    • 調整 Padding 會讓元素<strong>變大</strong>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ========== Margin 控制 ==========
+        const marginElements = {
+            top: document.getElementById('marginTop'),
+            right: document.getElementById('marginRight'),
+            bottom: document.getElementById('marginBottom'),
+            left: document.getElementById('marginLeft'),
+            topValue: document.getElementById('marginTopValue'),
+            rightValue: document.getElementById('marginRightValue'),
+            bottomValue: document.getElementById('marginBottomValue'),
+            leftValue: document.getElementById('marginLeftValue'),
+            container: document.getElementById('marginContainer'),
+            topBox: document.getElementById('marginTopBox'),
+            rightBox: document.getElementById('marginRightBox'),
+            bottomBox: document.getElementById('marginBottomBox'),
+            leftBox: document.getElementById('marginLeftBox'),
+            code: document.getElementById('marginCode')
+        };
+
+        function updateMargin() {
+            const values = {
+                t: marginElements.top.value,
+                r: marginElements.right.value,
+                b: marginElements.bottom.value,
+                l: marginElements.left.value
+            };
+
+            marginElements.topValue.textContent = values.t + 'px';
+            marginElements.rightValue.textContent = values.r + 'px';
+            marginElements.bottomValue.textContent = values.b + 'px';
+            marginElements.leftValue.textContent = values.l + 'px';
+
+            marginElements.container.style.marginTop = values.t + 'px';
+            marginElements.container.style.marginRight = values.r + 'px';
+            marginElements.container.style.marginBottom = values.b + 'px';
+            marginElements.container.style.marginLeft = values.l + 'px';
+
+            marginElements.topBox.style.cssText = `
+                position: absolute;
+                top: -${values.t}px;
+                left: 0;
+                right: 0;
+                height: ${values.t}px;
+                ${values.t > 0 ? 'display: flex;' : 'display: none;'}
+            `;
+            marginElements.topBox.textContent = values.t > 0 ? `↑ ${values.t}px` : '';
+
+            marginElements.rightBox.style.cssText = `
+                position: absolute;
+                top: 0;
+                right: -${values.r}px;
+                bottom: 0;
+                width: ${values.r}px;
+                ${values.r > 0 ? 'display: flex;' : 'display: none;'}
+                writing-mode: vertical-rl;
+            `;
+            marginElements.rightBox.textContent = values.r > 0 ? `${values.r}px →` : '';
+
+            marginElements.bottomBox.style.cssText = `
+                position: absolute;
+                bottom: -${values.b}px;
+                left: 0;
+                right: 0;
+                height: ${values.b}px;
+                ${values.b > 0 ? 'display: flex;' : 'display: none;'}
+            `;
+            marginElements.bottomBox.textContent = values.b > 0 ? `↓ ${values.b}px` : '';
+
+            marginElements.leftBox.style.cssText = `
+                position: absolute;
+                top: 0;
+                left: -${values.l}px;
+                bottom: 0;
+                width: ${values.l}px;
+                ${values.l > 0 ? 'display: flex;' : 'display: none;'}
+                writing-mode: vertical-rl;
+            `;
+            marginElements.leftBox.textContent = values.l > 0 ? `${values.l}px ←` : '';
+
+            marginElements.code.innerHTML = `.element {<br>
+&nbsp;&nbsp;<span class="highlight-margin">margin-top: ${values.t}px;</span><br>
+&nbsp;&nbsp;<span class="highlight-margin">margin-right: ${values.r}px;</span><br>
+&nbsp;&nbsp;<span class="highlight-margin">margin-bottom: ${values.b}px;</span><br>
+&nbsp;&nbsp;<span class="highlight-margin">margin-left: ${values.l}px;</span><br>
+}`;
+        }
+
+        marginElements.top.addEventListener('input', updateMargin);
+        marginElements.right.addEventListener('input', updateMargin);
+        marginElements.bottom.addEventListener('input', updateMargin);
+        marginElements.left.addEventListener('input', updateMargin);
+        updateMargin();
+
+        // ========== Padding 控制 ==========
+        const paddingElements = {
+            top: document.getElementById('paddingTop'),
+            right: document.getElementById('paddingRight'),
+            bottom: document.getElementById('paddingBottom'),
+            left: document.getElementById('paddingLeft'),
+            topValue: document.getElementById('paddingTopValue'),
+            rightValue: document.getElementById('paddingRightValue'),
+            bottomValue: document.getElementById('paddingBottomValue'),
+            leftValue: document.getElementById('paddingLeftValue'),
+            element: document.getElementById('paddingElement'),
+            content: document.getElementById('paddingContent'),
+            topBox: document.getElementById('paddingTopBox'),
+            rightBox: document.getElementById('paddingRightBox'),
+            bottomBox: document.getElementById('paddingBottomBox'),
+            leftBox: document.getElementById('paddingLeftBox'),
+            code: document.getElementById('paddingCode')
+        };
+
+        function updatePadding() {
+            const values = {
+                t: paddingElements.top.value,
+                r: paddingElements.right.value,
+                b: paddingElements.bottom.value,
+                l: paddingElements.left.value
+            };
+
+            paddingElements.topValue.textContent = values.t + 'px';
+            paddingElements.rightValue.textContent = values.r + 'px';
+            paddingElements.bottomValue.textContent = values.b + 'px';
+            paddingElements.leftValue.textContent = values.l + 'px';
+
+            paddingElements.content.style.paddingTop = values.t + 'px';
+            paddingElements.content.style.paddingRight = values.r + 'px';
+            paddingElements.content.style.paddingBottom = values.b + 'px';
+            paddingElements.content.style.paddingLeft = values.l + 'px';
+
+            paddingElements.topBox.style.cssText = `
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                height: ${values.t}px;
+                ${values.t > 0 ? 'display: flex;' : 'display: none;'}
+            `;
+            paddingElements.topBox.textContent = values.t > 0 ? `↓ ${values.t}px` : '';
+
+            paddingElements.rightBox.style.cssText = `
+                position: absolute;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                width: ${values.r}px;
+                ${values.r > 0 ? 'display: flex;' : 'display: none;'}
+                writing-mode: vertical-rl;
+            `;
+            paddingElements.rightBox.textContent = values.r > 0 ? `${values.r}px ←` : '';
+
+            paddingElements.bottomBox.style.cssText = `
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                height: ${values.b}px;
+                ${values.b > 0 ? 'display: flex;' : 'display: none;'}
+            `;
+            paddingElements.bottomBox.textContent = values.b > 0 ? `↑ ${values.b}px` : '';
+
+            paddingElements.leftBox.style.cssText = `
+                position: absolute;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                width: ${values.l}px;
+                ${values.l > 0 ? 'display: flex;' : 'display: none;'}
+                writing-mode: vertical-rl;
+            `;
+            paddingElements.leftBox.textContent = values.l > 0 ? `${values.l}px →` : '';
+
+            paddingElements.code.innerHTML = `.element {<br>
+&nbsp;&nbsp;<span class="highlight-padding">padding-top: ${values.t}px;</span><br>
+&nbsp;&nbsp;<span class="highlight-padding">padding-right: ${values.r}px;</span><br>
+&nbsp;&nbsp;<span class="highlight-padding">padding-bottom: ${values.b}px;</span><br>
+&nbsp;&nbsp;<span class="highlight-padding">padding-left: ${values.l}px;</span><br>
+}`;
+        }
+
+        paddingElements.top.addEventListener('input', updatePadding);
+        paddingElements.right.addEventListener('input', updatePadding);
+        paddingElements.bottom.addEventListener('input', updatePadding);
+        paddingElements.left.addEventListener('input', updatePadding);
+        updatePadding();
+    </script>
+</body>
+
+</html>
