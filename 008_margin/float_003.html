@@ -6,37 +6,61 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
+        *{
+            overflow: hidden;
+        }
         .content{
             background-color: aqua;
-            width: 50%;
-            height: 33vh;
+            width: 34%;
+            height: 120vh;
+            padding-top 10px; ;
             float: left;
         }
         .content_01{
             background-color: aquamarine;
-            width: 50%;
-            height: 33vh;
-            float:right;
+            width: 65%;
+            height: 120vh;
+            float:left;
+        }
+        .content_02{
+            width: 100%;
+            float:left;
+        
+
+        }
+
+        .content_03{
+            width: 100%;
+            float:left;
+        }
+        .box{
+            width: 100%;
+            height: 40vh;
         }
         
         .box1{
-            width: 10%;
-            height: 15vh;
-            background-color: aquamarine;
+            width: 100%;
+            height: 40vh;
+            background-color: rgb(111, 247, 151);
             
         }
         .box2{
             background-color: rgb(180, 180, 98);
-            width: 10%;
-            height: 15vh;
+            width: 100%;
+            height:40vh;
             float: left;
             
         }
         .box3{
             background-color: rgb(214, 214, 148);
-            width: 10%;
-            height: 15vh;
+            width: 100%;
+            height: 40vh;
             float: left
+    
+        }
+        img{
+            width: 100%;
+            height: 40vh;
         }
 
         </style>
@@ -44,29 +68,32 @@
 
 <body>
     <div class="content">
-        <div class="box box1"></div>
-        <div class="box box2"></div>
-        <div class="box box3"></div>
-    </div>
-    <div class="content_01">
-        <div class="box box4">
-
+        <div class="box">
+            <a href="#b1">
+            <img src="https://picsum.photos/id/20/1920/768" alt="" >
         </div>
-
+        <div class="box">
+            <a href="#b2">
+            <img src="https://picsum.photos/id/21/1920/768" alt="" >
+        </div>
+        <div class="box">
+            <a href="#b3">
+            <img src="https://picsum.photos/id/22/1920/768" alt="" >
+        </div>
     </div>
-    <div class="content_02">
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eos alias unde aut fugit beatae molestiae illum
-        sequi,
-        dolores assumenda adipisci reiciendis tempora repellendus consequuntur quis explicabo aliquid delectus,
-        necessitatibus fugiat vero sunt quaerat amet! Veritatis harum vel debitis libero dignissimos rerum
-        voluptatibus.
-        Cumque reprehenderit inventore atque cupiditate laudantium dolorum id tempore doloremque quis provident
-        sequi,
-        odio saepe illum velit odit nesciunt harum perferendis laboriosam. Similique deserunt deleniti amet,
-        suscipit
-        dicta iure dolorem illum incidunt magnam beatae commodi eligendi veritatis voluptatem.
-    </div>
-    </div>
+    <div class="content_01" id="b1">
+        <div class="box box1">
+            <img src="https://picsum.photos/id/20/1920/768" alt="">
+        </div>
+        <div class="content_02" id="b2">
+        <div class="box box2">
+            <img src="https://picsum.photos/id/21/1920/768" alt="">
+        </div>
+        <div class="content_03" id="b3">
+        <div class="box box3">
+            <img src="https://picsum.photos/id/22/1920/768" alt="">
+        </div>
+     </div>
 </body>
 
 </html>
