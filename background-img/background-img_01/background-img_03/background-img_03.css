@@ -1,0 +1,79 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+.img-fluid {
+    max-width: 100%;
+    height: auto;
+}
+
+.container {
+    /* background-color: green; */
+    background-image: url('./pokemon_picture/International_Pokémon_logo.svg.png');
+     background-repeat: no-repeat;
+     background-size: 100%;
+     background-position: -2px 38px;
+    width: 100%;
+    height: 100vh;
+    padding: 10px;
+    text-align: center;
+}
+
+.box {
+    width: 23%;
+    height: 40vh;
+    background-color: beige;
+    margin: 40px;
+    display: inline-block;
+    border-radius: 30px 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    box-sizing: border-box;
+}
+
+.box1 {
+    background-image: url('./pokemon_picture/0783062d0d860b8ae7d8e859241a700359c4d981.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+     background-position: 4px -37px;
+
+}
+.box2 {
+    background-image: url('./pokemon_picture/c959a88d4dd9e2007d466535100ae40439d8ff82.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+     background-position: 1px -32px;
+     
+}
+
+.box3 {
+    background-image: url('./pokemon_picture/do-people-still-think-jigglypuff-is-irrelevant-enough-to-v0-gyh0zcczhpzc1.webp');
+    background-size: cover;
+    background-repeat: no-repeat;
+     background-position: 23px -41px;
+
+}
+.box4 {
+    background-image: url('./pokemon_picture/0001.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+     background-position: 4px -37px;
+     
+}
+
+.box5 {
+    background-image: url('./pokemon_picture/b9315248eb858f1d27c2820c3143f0592981a8c9.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+     background-position: 4px -37px;
+
+}
+.box6 {
+    background-image: url('./pokemon_picture/634e1c205ab72071fe941043f816a9e2f31db3ae.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+     background-position: 4px -37px;
+     
+}
